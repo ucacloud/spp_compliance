@@ -1,4 +1,7 @@
 import re
+import os
+import csv
+from datetime import datetime
 
 log_file_path = 'logs/example_log.txt'
 
@@ -55,11 +58,19 @@ for v in violations:
 for v_type, count in violation_counts.items():
     print(f"{v_type}: {count}")
 
-# Output information to txt file in output folder
+# Output to CSV and TXT
 
-output_file_path = 'output/violation_report.txt'
+#Create safe timestamp
+timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 
-with open(output_file_path, 'w') as outfile:
+#Create a txt subfolder if it doesn't exist
+txt_output_dir = 'output/txt'
+os.makedirs(txt_output_dir, exist_ok=True)
+
+#Generate timestamped txt filename
+txt_filename = f"{txt_output_dir}/violation_report_{timestamp}.txt"
+
+with open(txt_filename, 'w') as outfile:
     outfile.write("Detailed Violations:\n")
     for v in violations:
         outfile.write(f"Line {v['line_number']} [{v['timestamp']}] [{v['log_level']}] [{v['violation_type']}]: {v['description']}\n")
@@ -68,4 +79,22 @@ with open(output_file_path, 'w') as outfile:
     for v_type, count in violation_counts.items():
         outfile.write(f"{v_type}: {count}\n")
 
-print(f"\nReport saved to {output_file_path}")
+print(f"\nReport saved to {txt_filename}")
+
+#Create csv subfolder if it doesn't exist
+csv_output_dir = 'output/csv'
+os.makedirs(csv_output_dir, exist_ok=True)
+
+#Generate timestamped csv filename
+csv_filename = f"{csv_output_dir}/violation_report_{timestamp}.csv"
+
+#Write violations to csv
+with open(csv_filename, mode='w', newline='', encoding='utf-8') as csvfile:
+    fieldnames = ['line_number', 'timestamp', 'log_level', 'violation_type', 'description']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    for violation in violations:
+        writer.writerow(violation)
+
+print(f"\nCSV report saved to: {csv_filename}")
