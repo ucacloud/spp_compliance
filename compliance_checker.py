@@ -14,7 +14,6 @@ violations = [] #List that stores violation records
 with open(log_file_path, 'r') as file:
     for line_number, line in enumerate(file, start=1):
         cleaned_line = line.strip()
-        matched = False
 
         for violation_type, pattern in violation_patterns.items():
             if pattern in cleaned_line:
@@ -23,14 +22,11 @@ with open(log_file_path, 'r') as file:
                     "violation_type": violation_type,
                     "description": cleaned_line
                 })
-                matched = True
 
-        if not matched:
-            pass
 for v in violations:
     print(f"Line {v['line_number']}: [{v['violation_type']}] {v['description']}")
 
-print("\nSummary of Violations:")
+print("\nSummary of Violations:") #Creates a summary of the violations
 violation_counts = {}
 
 for v in violations:
