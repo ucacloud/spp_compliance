@@ -1,6 +1,8 @@
 import re
 import os
 import csv
+import time
+
 from datetime import datetime
 
 log_file_path = 'logs/example_log.txt'
@@ -98,3 +100,20 @@ with open(csv_filename, mode='w', newline='', encoding='utf-8') as csvfile:
         writer.writerow(violation)
 
 print(f"\nCSV report saved to: {csv_filename}")
+
+#Auto delete reports older than 30 days
+def auto_delete_old_reports(folder_path, days_old=30):
+    now = time.time()
+    cutoff = now - (days_old * 86400)
+
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        if os.path.isfile(file_path):
+            file_mtime = os.path.getmtime(file_path)
+            if file_mtime < cutoff:
+                os.remove(file_path)
+                print(f"Deleted old report: {file_path}")
+
+#Call the function for both subfolders
+auto_delete_old_reports('output/csv')
+auto_delete_old_reports('output/txt')
