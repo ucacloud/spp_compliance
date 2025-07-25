@@ -1,0 +1,19 @@
+{
+  "log_file_path": "logs/example_log.txt",
+  "txt_output_dir": "output/txt",
+  "csv_output_dir": "output/csv",
+  "violation_patterns": {
+    "Failed Login": "Failed password",
+    "Invalid User": "Invalid user",
+    "Privilege Escalation": "sudo",
+    "Sensitive File Access": "/ect/shadow",
+    "SSH Activity": "sshd"
+  },
+  "log_levels": {
+    "Failed Login": "ERROR",
+    "Invalid User": "WARNING",
+    "Privilege Escalation": "CRITICAL",
+    "Sensitive File Access": "Critical",
+    "SSH Activity": "INFO"
+  }
+}

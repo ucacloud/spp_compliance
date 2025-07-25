@@ -1,29 +1,20 @@
-import re
-import os
 import csv
+import json
+import os
+import re
 import time
 
 from datetime import datetime
 
-log_file_path = 'logs/example_log.txt'
+#Load config.json
+with open('config/config.json', 'r') as config_file:
+    config = json.load(config_file)
 
-# Define violation patterns
-violation_patterns = {
-    "Failed Login": "Failed password",
-    "invalid User": "Invalid user",
-    "Privilege Escalation": "sudo",
-    "Sensitive File Access": "/etc/shadow",
-    "SSH Activity": "sshd"
-}
-
-# Map violation types to log levels
-log_levels = {
-    "Failed Login": "ERROR",
-    "Invalid User": "WARNING",
-    "Privilege Escalation": "CRITICAL",
-    "Sensitive File Access": "CRITICAL",
-    "SSH Activity": "INFO"
-}
+log_file_path = config['log_file_path']
+violation_patterns = config['violation_patterns']
+log_levels = config['log_levels']
+txt_output_dir = config['txt_output_dir']
+csv_output_dir = config['csv_output_dir']
 
 violations = [] #List that stores violation records
 
@@ -66,7 +57,6 @@ for v_type, count in violation_counts.items():
 timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 
 #Create a txt subfolder if it doesn't exist
-txt_output_dir = 'output/txt'
 os.makedirs(txt_output_dir, exist_ok=True)
 
 #Generate timestamped txt filename
@@ -84,7 +74,6 @@ with open(txt_filename, 'w') as outfile:
 print(f"\nReport saved to {txt_filename}")
 
 #Create csv subfolder if it doesn't exist
-csv_output_dir = 'output/csv'
 os.makedirs(csv_output_dir, exist_ok=True)
 
 #Generate timestamped csv filename
