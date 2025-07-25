@@ -1,3 +1,4 @@
+import argparse
 import csv
 import json
 import os
@@ -10,7 +11,14 @@ from datetime import datetime
 with open('config/config.json', 'r') as config_file:
     config = json.load(config_file)
 
-log_file_path = config['log_file_path']
+#CLI Argument parser to check different log files
+parser = argparse.ArgumentParser(description='Compliane Log Checker')
+parser.add_argument('--logfile', type=str, help='Path to the log file')
+args = parser.parse_args()
+
+#Use command line log file if provided, otherwise fall back to config
+log_file_path = args.logfile if args.logfile else config['log_file_path']
+
 violation_patterns = config['violation_patterns']
 log_levels = config['log_levels']
 txt_output_dir = config['txt_output_dir']

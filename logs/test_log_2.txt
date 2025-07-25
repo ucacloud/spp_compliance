@@ -1,0 +1,5 @@
+Jul 23 09:12:44 localhost sshd[3021]: Failed password for root from 172.16.0.3 port 5000 ssh2
+Jul 23 09:13:10 localhost sshd[3022]: Invalid user test from 172.16.0.3 port 5001
+Jul 23 09:14:01 localhost sshd[3023]: Connection reset by 172.16.0.3 port 5002
+Jul 23 09:15:12 localhost sudo:     admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/vim /ect/shadow
+Jul 23 09:16:22 localhost systemd[1]: Started Daily Cleanup of Temporary Directories.
