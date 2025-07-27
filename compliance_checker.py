@@ -37,7 +37,7 @@ with open(log_file_path, 'r') as file:
         timestamp = timestamp_match.group(0) if timestamp_match else "Unknown"
 
         for violation_type, pattern in violation_patterns.items():
-            if pattern in cleaned_line:
+            if re.search(pattern, cleaned_line):
                 violations.append({
                     "line_number": line_number,
                     "timestamp": timestamp,
