@@ -1,8 +1,0 @@
-line_number,timestamp,log_level,violation_type,description
-1,Jul 22 13:01:32,ERROR,Failed Login,Jul 22 13:01:32 localhost sshd[2049]: Failed password for invalid user admin from 192.168.1.5 port 2222 ssh2
-1,Jul 22 13:01:32,INFO,SSH Activity,Jul 22 13:01:32 localhost sshd[2049]: Failed password for invalid user admin from 192.168.1.5 port 2222 ssh2
-2,Jul 22 13:01:34,WARNING,Invalid User,Jul 22 13:01:34 localhost sshd[2049]: Invalid user guest from 192.168.1.5 port 2222
-2,Jul 22 13:01:34,INFO,SSH Activity,Jul 22 13:01:34 localhost sshd[2049]: Invalid user guest from 192.168.1.5 port 2222
-3,Jul 22 13:02:15,CRITICAL,Privilege Escalation,Jul 22 13:02:15 localhost sudo:     user1 : TTY=pts/0 ; PWD=/home/user1 ; USER=root ; COMMAND=/bin/less /etc/shadow
-4,Jul 22 13:03:10,INFO,SSH Activity,Jul 22 13:03:10 localhost sshd[2050]: Connection closed by authenticating user root 192.168.1.5 port 2222
-5,Jul 22 13:04:02,INFO,SSH Activity,Jul 22 13:04:02 localhost sshd[2051]: Accepted password for user2 from 10.0.0.1 port 443 ssh2

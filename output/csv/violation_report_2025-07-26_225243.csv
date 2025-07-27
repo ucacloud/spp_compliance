@@ -1,8 +1,0 @@
-line_number,timestamp,log_level,violation_type,description
-1,Jul 23 09:12:44,ERROR,Failed Login,Jul 23 09:12:44 localhost sshd[3021]: Failed password for root from 172.16.0.3 port 5000 ssh2
-1,Jul 23 09:12:44,INFO,SSH Activity,Jul 23 09:12:44 localhost sshd[3021]: Failed password for root from 172.16.0.3 port 5000 ssh2
-2,Jul 23 09:13:10,WARNING,Invalid User,Jul 23 09:13:10 localhost sshd[3022]: Invalid user test from 172.16.0.3 port 5001
-2,Jul 23 09:13:10,INFO,SSH Activity,Jul 23 09:13:10 localhost sshd[3022]: Invalid user test from 172.16.0.3 port 5001
-3,Jul 23 09:14:01,INFO,SSH Activity,Jul 23 09:14:01 localhost sshd[3023]: Connection reset by 172.16.0.3 port 5002
-4,Jul 23 09:15:12,CRITICAL,Privilege Escalation,Jul 23 09:15:12 localhost sudo:     admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/vim /ect/shadow
-4,Jul 23 09:15:12,Critical,Sensitive File Access,Jul 23 09:15:12 localhost sudo:     admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/vim /ect/shadow

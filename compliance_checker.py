@@ -68,7 +68,7 @@ timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 os.makedirs(txt_output_dir, exist_ok=True)
 
 #Generate timestamped txt filename
-txt_filename = f"{txt_output_dir}/violation_report_{timestamp}.txt"
+txt_filename = os.path.join(txt_output_dir, f"violation_report_{timestamp}.txt")
 
 with open(txt_filename, 'w') as outfile:
     outfile.write("Detailed Violations:\n")
@@ -81,12 +81,18 @@ with open(txt_filename, 'w') as outfile:
 
 print(f"\nReport saved to {txt_filename}")
 
+#json output for Angular
+json_output_path = os.path.join('output', 'json', f'violations_{timestamp}.json')
+with open(json_output_path, 'w') as json_file:
+    json.dump(violations, json_file, indent=2)
+
+print(f"Report saved to {json_output_path}")
+
 #Create csv subfolder if it doesn't exist
 os.makedirs(csv_output_dir, exist_ok=True)
 
 #Generate timestamped csv filename
-csv_filename = f"{csv_output_dir}/violation_report_{timestamp}.csv"
-
+csv_filename = os.path.join(csv_output_dir, f"violation_report_{timestamp}.txt")
 #Write violations to csv
 with open(csv_filename, mode='w', newline='', encoding='utf-8') as csvfile:
     fieldnames = ['line_number', 'timestamp', 'log_level', 'violation_type', 'description']
@@ -113,4 +119,5 @@ def auto_delete_old_reports(folder_path, days_old=30):
 
 #Call the function for both subfolders
 auto_delete_old_reports('output/csv')
+auto_delete_old_reports('output/json')
 auto_delete_old_reports('output/txt')
